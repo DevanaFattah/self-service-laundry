@@ -199,7 +199,13 @@
 </head>
 <body class="bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-700 font-poppins flex">
     <!-- Dark Mode Toggle Button -->
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark-mode-icon">
+    <!-- Sun (default for light mode) -->
+    <circle cx="12" cy="12" r="5" fill="currentColor"/>
+    <path d="M12 2V4M12 20V22M4 12H2M22 12H20M6.34 6.34L5.23 5.23M18.77 18.77L17.66 17.66M6.34 17.66L5.23 18.77M18.77 5.23L17.66 6.34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Moon (shown in dark mode with class toggle) -->
+    <path d="M12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8ZM12 1C7.58 1 4 4.58 4 9C4 13.97 7.58 18.55 12 20.95C16.42 18.55 20 13.97 20 9C20 4.58 16.42 1 12 1Z" fill="currentColor" class="dark-mode-moon"/>
+</svg></button>
 
     <!-- Navbar -->
     <button data-drawer-target="navbar-multi-level" data-drawer-toggle="navbar-multi-level" aria-controls="navbar-multi-level" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-gray-300 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:hidden">
@@ -224,6 +230,12 @@
                     Pesan Sekarang
                 </a>
             </div>
+
+            @if (session('error'))
+                    <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-4">
+                        {{ session('error') }}
+                    </div>
+                @endif
             <!-- Search Input -->
             <div class="mb-4">
                 <label for="table-search" class="sr-only">Search</label>
