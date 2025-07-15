@@ -86,10 +86,15 @@
         }
         .action-btn {
             transition: transform 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-            padding: 1rem 1rem;
+            padding: 0.25rem 0.5rem;
             border-radius: 0.375rem;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px; /* Increased from 24px to 32px */
+            height: 32px; /* Increased from 24px to 32px */
         }
         .action-btn:hover {
             transform: scale(1.05);
@@ -161,9 +166,8 @@
         .dark .dark-mode-toggle:hover {
             background-color: rgba(0, 0, 0, 0.2);
         }
-        /* Custom style for Actions column */
         .table-container td:last-child {
-            padding-left: 0.25rem; /* Add left padding to shift buttons left */
+            padding-left: 0.25rem;
         }
     </style>
 </head>
@@ -210,13 +214,13 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase">
                         <tr>
-                            <th scope="col" class="px-6 py-3 w-1/12 min-w-[80px]">Berat</th>
-                            <th scope="col" class="px-6 py-3 w-1/12 min-w-[100px]">Jumlah Koin</th>
-                            <th scope="col" class="px-6 py-3 w-1/6 min-w-[120px]">Total</th>
+                            <th scope="col" class="text-center px-6 py-3 w-1/10 min-w-[80px]">Berat (kg)</th>
+                            <th scope="col" class="px-6 py-3 w-1/12 min-w-[100px]">Jumlah Koin (Pcs)</th>
+                            <th scope="col" class="px-6 py-3 w-1/6 min-w-[120px]">Total (Rp.)</th>
                             <th scope="col" class="px-6 py-3 w-1/6 min-w-[120px]">Metode Pembayaran</th>
                             <th scope="col" class="px-6 py-3 w-1/6 min-w-[120px]">Status Pembayaran</th>
-                            <th scope="col" class="px-6 py-3 w-1/4 min-w-[150px]">Tanggal Pemesanan</th>
-                            <th scope="col" class="px-6 py-3 w-1/6 min-w-[120px]">Actions</th>
+                            <th scope="col" class="px-6 py-3 w-1/6 min-w-[150px]">Tanggal Pemesanan</th>
+                            <th scope="col" class="px-6 py-3 w-1/8 min-w-[140px]">Actions</th> <!-- Increased min-width to accommodate larger buttons -->
                         </tr>
                     </thead>
                     <tbody>
@@ -228,9 +232,17 @@
                             <td class="px-6 py-4">{{ $transaction->payment_method }}</td>
                             <td class="px-6 py-4">{!! $transaction->approval ? '<span class="status-approved">Lunas</span>' : '<span class="status-rejected">Belum Dibayar</span>' !!}</td>
                             <td class="px-6 py-4">{{ $transaction->created_at->format('d M Y H:i') }}</td>
-                            <td class="px-6 py-4 pl-2 flex space-x-1"> <!-- Added pl-2 (padding-left: 0.5rem) to shift left -->
-                                <button class="action-btn edit p-6 text-blue-600" onclick="editOrder(this)">Edit</button>
-                                <button class="action-btn delete p-6 text-red-600" onclick="deleteOrder(this)">Delete</button>
+                            <td class="px-6 py-4 pl-2 flex space-x-1">
+                                <button class="action-btn edit text-blue-600" onclick="editOrder(this)">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                    </svg>
+                                </button>
+                                <button class="action-btn delete text-red-600" onclick="deleteOrder(this)">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z"/>
+                                    </svg>
+                                </button>
                             </td>
                         </tr>
                         @endforeach
