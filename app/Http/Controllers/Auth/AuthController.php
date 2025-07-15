@@ -29,9 +29,9 @@ class AuthController extends Controller
                 return redirect()->intended('/v1/dashboard');
             }
     
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-        ]   )->onlyInput('email');
+            return back()->with([
+                'error' => 'Akun tidak cocok dengan data manapun.',
+        ]   );
         }
         
         catch (Throwable $t) {

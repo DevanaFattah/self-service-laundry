@@ -105,15 +105,15 @@
             @csrf
             <div>
                 <label for="weight" class="block text-lg font-semibold text-gray-700">Berat (kg)</label>
-                <input type="text" id="weight" name="weight" min="1" step="0.5" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., 5.5" required>
+                <input type="text" id="weight" name="weight" min="1" step="0.5" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="5 Kg" required>
             </div>
             <div>
                 <label for="coin" class="block text-lg font-semibold text-gray-700">Jumlah Koin</label>
-                <input type="number" id="coin" name="quantity" min="1" step="0.5" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., 5.5" required>
+                <input type="number" id="coin" name="quantity" min="1" step="0.5" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="3 Koin" required>
             </div>
             <div>
                 <label for="total" class="block text-lg font-semibold text-gray-700">Total Harga</label>
-                <input type="text" id="total" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., Rp 110,000.00" readonly required>
+                <input type="text" id="total" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="Rp 110,000.00" readonly required>
             </div>
             <div>
                 <input type="text" id="total-hidden" name="total" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., Rp 110,000.00" hidden readonly required>

@@ -226,11 +226,21 @@
                 <p class="text-3xl font-bold text-blue-600 mt-2">{{ $users->count() }}</p>
             </div>
         </div>
+
+        <div class="button-container mt-6">
+                <a href="{{ route('order') }}" class="flex items-center justify-center bg-gradient-to-r from-green-600 to-teal-600 text-white py-3 px-6 rounded-xl hover:from-green-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 transform hover:scale-105 hover-glow font-poppins text-lg">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Tambah Member
+                </a>
+            </div>
         <div class="overflow-x-auto table-container mt-8">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase">
                         <tr>
                             <th scope="col" class="text-center px-6 py-3 w-1/4 min-w-[80px]">Nama</th>
+                            <th scope="col" class="text-center px-6 py-3 w-1/4 min-w-[80px]">Email</th>
                             <th scope="col" class="px-6 py-3 w-1/4 min-w-[120px]">Jumlah Pemesanan</th>
                             <th scope="col" class="px-6 py-3 w-1/4 min-w-[150px]">Tanggal Bergabung</th>
                             <th scope="col" class="px-6 py-3 w-1/4 min-w-[140px]">Actions</th>
@@ -240,6 +250,8 @@
                         @foreach ($users as $user)
                         <tr class="border-b">
                             <td class="px-6 py-4">{{ $user->name }}</td>
+                            <td class="px-6 py-4">{{ $user->email
+                             }}</td>
                             <td class="px-6 py-4">{{ $user->transactions->count() }} Pesanan</td>
                             <td class="px-6 py-4">{{ $user->created_at }}</td>
                             <td class="px-6 py-4 pl-2 flex space-x-1">

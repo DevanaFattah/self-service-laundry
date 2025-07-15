@@ -304,7 +304,6 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/flowbite.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const navbar = document.getElementById('navbar-multi-level');
         const mainContent = document.getElementById('mainContent');
