@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('total');
             $table->string('payment_method');
+            $table->string('status')->default('ok');
             $table->date('reservation_date');
             $table->timestamps();
         });

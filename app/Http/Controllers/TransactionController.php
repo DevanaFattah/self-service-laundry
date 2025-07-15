@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class TransactionController extends Controller
 {
@@ -13,12 +15,31 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('user')->get();
-
-
+        $transactions = Transaction::
+                            where('user_id', '=', auth()->user()->id)
+                            ->with('user')
+                            ->get();
+        // dd(Transaction::where('user_id', '=', auth()->user()->id));
+        // $transactions = Transaction::with('user')->get();
 
         return view("laundry.listing")
                 ->with('transactions', $transactions);
+    }
+
+    public function userOrder($id)
+    {
+        $transactions = Transaction::
+                            where('user_id', '=', auth()->user()->id)
+                            ->with('user')
+                            ->get();
+
+        $user = User::find($id);
+        // dd(Transaction::where('user_id', '=', auth()->user()->id));
+        // $transactions = Transaction::with('user')->get();
+
+        return view("laundry.user-order")
+                ->with('transactions', $transactions)
+                ->with('user', $user);
     }
 
     /**
@@ -36,14 +57,13 @@ class TransactionController extends Controller
     {
         try {
 
-            // dd($request);
+            // dd($request->only('reservation_datetime')['reservation_datetime']);
             $coinPrice = 20000;
 
             $selectedRequest = $request->only([
                 'weight',
                 'quantity',
                 'payment_method',
-                'reservation_date',
                 'total',
             ]);
 
@@ -51,7 +71,8 @@ class TransactionController extends Controller
                 'user_id' => auth()->user()->id,
                 'approval' => false,
                 'quantity' => $request->only('coin'),
-                'price' => $coinPrice
+                'price' => $coinPrice,
+                'reservation_date' => Date::parse($request->only('reservation_datetime')['reservation_datetime'])
             ]);
 
             return redirect()->route('transaction.index');    
@@ -87,7 +108,25 @@ class TransactionController extends Controller
     {
         $selectedRequest = $request->only([]);
     }
-
+    
+    /**
+     * Update the specified resource in storage.
+     */
+    public function confirmOrder(Request $request, $id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->update(['approval' => 1]); // Example update; adjust based on your needs
+        return redirect()->route('transaction.user-order', $id)->with('success', 'Order cancelled successfully!');
+    }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function cancelOrder($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->update(['status' => 'cancelled']); // Example update; adjust based on your needs
+        return redirect()->route('transaction.user-order')->with('success', 'Order cancelled successfully!');
+    }
     /**
      * Remove the specified resource from storage.
      */

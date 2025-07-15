@@ -44,7 +44,7 @@ class Transaction extends Model
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'reservation_date' => 'datetime'
         ];
     }
 

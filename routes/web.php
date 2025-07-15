@@ -19,6 +19,9 @@ Route::prefix('v1')->group(function ($route) {
         Route::get('/dashboard', [LaundryController::class, 'index'])->name('dashboard');
         Route::get('/order', [LaundryController::class, 'order'])->name("order");
         Route::resource('transaction', TransactionController::class);
+        Route::put('transaction/cancel-order/{id}', [TransactionController::class, 'cancelOrder'])->name('transaction.cancelOrder');
+        Route::put('transaction/confirm-order/{id}', [TransactionController::class, 'confirmOrder'])->name('transaction.confirmOrder');
+        Route::get('transaction/user-order/{id}', [TransactionController::class, 'userOrder'])->name('transaction.user-order');
         // Route::get('/transaction', TransactionController::class);
             // ->get('dashboard', [LaundryController::class, 'index'])->name("main");
     });

@@ -101,7 +101,7 @@
 
     <!-- Main Content -->
     <div class="ml-0 md:ml-20 lg:ml-64 p-6 flex-1 transition-all duration-300" id="mainContent">
-        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text text-white mb-8 fade-in">Place Your Order</h1>
+        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text text-white mb-8 fade-in">Edit Your Order</h1>
         <form method="POST" action="{{ route('transaction.store') }}" class="space-y-6 bg-white/90 backdrop-blur-md rounded-2xl p-8 shadow-xl hover-glow" id="orderForm">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Rincian Pesanan</h2>
             @csrf
@@ -135,7 +135,7 @@
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M3 3h2l1.5 9h12l1.5-7H5M6 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-4-11v7h7V8h-7z"/>
                 </svg>
-                Pesan Sekarang
+                Ubah Pesanan
             </button>
         </form>
 
@@ -193,4 +193,4 @@
         // }
     </script>
 </body>
-</html>p
+</html>

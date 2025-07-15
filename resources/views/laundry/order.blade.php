@@ -36,21 +36,19 @@
             transition: all 0.3s ease-in-out;
         }
         .nav-item:hover {
-            background-color: rgba(37, 99, 235, 0.15); /* Lighter Blue-600 with opacity */
-            color: #2563EB; /* Blue-600 */
+            background-color: rgba(37, 99, 235, 0.15);
+            color: #2563EB;
         }
         .nav-item.active {
-            background-color: rgba(37, 99, 235, 0.3); /* Active state with Blue-600 */
-            color: #FFFFFF; /* White for contrast */
+            background-color: rgba(37, 99, 235, 0.3);
+            color: #FFFFFF;
         }
-        /* Adjusted typography sizes */
         label {
-            font-size: 0.875rem; /* Reduced from 1.125rem (18px) to 0.875rem (14px) */
+            font-size: 0.875rem;
         }
         input, select, button {
-            font-size: 0.875rem; /* Reduced from 1rem (16px) to 0.875rem (14px) */
+            font-size: 0.875rem;
         }
-        /* Modal custom styles */
         .modal {
             display: none;
             position: fixed;
@@ -115,14 +113,14 @@
             </div>
             <div>
                 <label for="total" class="block text-lg font-semibold text-gray-700">Total Harga</label>
-                <input type="text" id="total" name="" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., Rp 110,000.00" readonly required>
+                <input type="text" id="total" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., Rp 110,000.00" readonly required>
             </div>
             <div>
                 <input type="text" id="total-hidden" name="total" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" placeholder="e.g., Rp 110,000.00" hidden readonly required>
             </div>
             <div>
-                <label for="order_date" class="block text-lg font-semibold text-gray-700">Tanggal Reservasi</label>
-                <input type="date" id="pickup_date" name="reservation_date" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" required>
+                <label for="reservation_datetime" class="block text-lgdux font-semibold text-gray-700">Tanggal dan Waktu Reservasi</label>
+                <input type="datetime-local" id="reservation_datetime" name="reservation_datetime" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 bg-gray-50 text-gray-700 font-poppins" required>
             </div>
             <div>
                 <label for="laundry_type" class="block text-lg font-semibold text-gray-700">Metode Pembayaran</label>
@@ -138,15 +136,6 @@
                 Pesan Sekarang
             </button>
         </form>
-
-        <!-- Success Modal -->
-        {{-- <div id="successModal" class="modal">
-            <div class="modal-content">
-                <h2>Order Successfully Placed!</h2>
-                <p>Your order has been submitted successfully. Thank you for using our service!</p>
-                <button onclick="closeModal()">OK</button>
-            </div>
-        </div> --}}
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
@@ -157,7 +146,6 @@
         const mainContent = document.getElementById('mainContent');
         const toggleNavbar = document.querySelector('[data-drawer-toggle="navbar-multi-level"]');
         const orderForm = document.getElementById('orderForm');
-        const successModal = document.getElementById('successModal');
 
         toggleNavbar.addEventListener('click', () => {
             navbar.classList.toggle('-translate-x-full');
@@ -178,19 +166,6 @@
             totalInput.value = totalValue.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
             totalInputHidden.value = totalValue;
         });
-
-        // // Handle form submission and show modal
-        // orderForm.addEventListener('submit', (e) => {
-        //     e.preventDefault(); // Prevent actual form submission for demo
-        //     successModal.style.display = 'block'; // Show the modal
-        // });
-
-        // // Close modal function
-        // function closeModal() {
-        //     successModal.style.display = 'none';
-        //     orderForm.reset(); // Reset form fields
-        //     totalInput.value = ''; // Clear total input
-        // }
     </script>
 </body>
 </html>

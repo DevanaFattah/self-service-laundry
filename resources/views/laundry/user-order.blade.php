@@ -105,10 +105,10 @@
             color: #FFFFFF;
         }
         .action-btn.edit {
-            background-color: rgba(37, 99, 235, 0.1);
+            background-color: rgba(9, 228, 137, 0.1);
         }
         .action-btn.edit:hover {
-            background-color: rgba(37, 99, 235, 0.3);
+            background-color: rgba(11, 127, 79, 0);
         }
         .action-btn.delete {
             background-color: rgba(239, 68, 68, 0.1);
@@ -213,7 +213,7 @@
 
     <!-- Main Content -->
     <div class="ml-0 md:ml-20 lg:ml-64 p-6 flex-1 transition-all duration-300" id="mainContent">
-        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text text-white mb-8 fade-in">Semua Pesanan Anda</h1>
+        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text text-white mb-8 fade-in">Semua Pesanan Pelanggan {{ $user->name }}</h1>
         <div class="p-6">
             <!-- Button Container -->
             <div class="button-container">
@@ -266,20 +266,27 @@
                             <td class="px-6 py-4">{!! $transaction->status == 'ok' ? '<span class="status-approved">Berjalan</span>' : '<span class="status-rejected">Dibatalkan</span>' !!}</td>
                             <td class="px-6 py-4">{{ $transaction->reservation_date->format('d M Y') }}</td>
                             <td class="px-6 py-4 pl-2 flex space-x-1">
-                                <a class="action-btn edit text-blue-600" href="{{ route('transaction.edit', $transaction->id) }}">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                                    </svg>
-                                </a>
-                                <form action="{{ route('transaction.cancelOrder', $transaction->id) }}" method="POST" style="display: inline;">
+                                <form action="{{ route('transaction.confirmOrder', $transaction->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="action-btn edit text-green-600" onclick="return confirm('Apakah yakin akan mengonfirmasi pesanan?')">
+                                        <span class="payment-status-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                                <path d="M7 12L10 15L17 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                    </buttton>
+                                </form>
+                                {{-- <form action="{{ route('transaction.cancelOrder', $transaction->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('PUT')
                                     <button type="submit" class="action-btn delete text-red-600" onclick="return confirm('Are you sure you want to cancel this order?')">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z"/>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                         @endforeach
