@@ -67,7 +67,7 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -75,7 +75,9 @@ class TransactionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $transaction = Transaction::find($id);
+
+        return view('laundry.edit')->with('transaction', $transaction);
     }
 
     /**
@@ -83,7 +85,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $selectedRequest = $request->only([]);
     }
 
     /**
