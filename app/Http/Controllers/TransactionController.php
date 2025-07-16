@@ -107,7 +107,29 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $selectedRequest = $request->only([]);
+        // dd($request->only('reservation_datetime')['reservation_datetime']);
+
+        try {
+            $selectedRequest = $request->only([
+                'weight',
+                'quantity',
+                'payment_method',
+                'total',
+            ]);
+
+            $transaction = Transaction::find($id)->update(
+                $selectedRequest + [
+                    'quantity' => $request->only('coin'),
+                    'reservation_date' => Date::parse($request->only('reservation_date')['reservation_date'])
+                ]
+                );
+
+            return redirect()->route('transaction.index');    
+
+        } catch (\Throwable $th) {
+            throw $th;
+            // return $th->getMessage();  
+        }
     }
     
     /**
@@ -127,7 +149,7 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::findOrFail($id);
         $transaction->update(['status' => 'cancelled']); // Example update; adjust based on your needs
-        return redirect()->route('transaction.user-order')->with('success', 'Order cancelled successfully!');
+        return redirect()->route('transaction.index')->with('success', 'Order cancelled successfully!');
     }
     /**
      * Remove the specified resource from storage.

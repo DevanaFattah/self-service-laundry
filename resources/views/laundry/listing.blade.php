@@ -236,7 +236,7 @@
                         {{ session('error') }}
                     </div>
                 @endif
-            <!-- Search Input -->
+            <!-- Search Input ---->
             <div class="mb-4">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative">

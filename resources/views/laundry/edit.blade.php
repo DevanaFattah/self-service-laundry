@@ -102,8 +102,9 @@
     <!-- Main Content -->
     <div class="ml-0 md:ml-20 lg:ml-64 p-6 flex-1 transition-all duration-300" id="mainContent">
         <h1 class="text-4xl font-extrabold text-transparent bg-clip-text text-white mb-8 fade-in">Edit Your Order</h1>
-        <form method="POST" action="{{ route('transaction.store') }}" class="space-y-6 bg-white/90 backdrop-blur-md rounded-2xl p-8 shadow-xl hover-glow" id="orderForm">
+        <form method="POST" action="{{ route('transaction.update', $transaction->id) }}" class="space-y-6 bg-white/90 backdrop-blur-md rounded-2xl p-8 shadow-xl hover-glow" id="orderForm">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Rincian Pesanan</h2>
+            @method('put')
             @csrf
             <div>
                 <label for="weight" class="block text-lg font-semibold text-gray-700">Berat (kg)</label>
