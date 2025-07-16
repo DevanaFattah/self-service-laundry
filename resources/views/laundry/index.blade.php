@@ -228,13 +228,19 @@
         </div>
 
         <div class="button-container mt-6">
-                <a href="{{ route('order') }}" class="flex items-center justify-center bg-gradient-to-r from-green-600 to-teal-600 text-white py-3 px-6 rounded-xl hover:from-green-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 transform hover:scale-105 hover-glow font-poppins text-lg">
+                <a href="{{ route('add-user') }}" class="flex items-center justify-center bg-gradient-to-r from-green-600 to-teal-600 text-white py-3 px-6 rounded-xl hover:from-green-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 transform hover:scale-105 hover-glow font-poppins text-lg">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     Tambah Member
                 </a>
             </div>
+
+            @if (session('success'))
+                    <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-4 mt-4 ">
+                        {{ session('success') }}
+                    </div>
+        @endif
         <div class="overflow-x-auto table-container mt-8">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase">
@@ -255,7 +261,7 @@
                             <td class="px-6 py-4">{{ $user->transactions->count() }} Pesanan</td>
                             <td class="px-6 py-4">{{ $user->created_at }}</td>
                             <td class="px-6 py-4 pl-2 flex space-x-1">
-                                <a class="action-btn edit text-blue-600" href="{{ route('transaction.edit', $user->id) }}">
+                                <a class="action-btn edit text-blue-600" href="{{ route('edit-user', $user->id) }}">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                                     </svg>

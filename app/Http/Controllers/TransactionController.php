@@ -117,7 +117,8 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::findOrFail($id);
         $transaction->update(['approval' => 1]); // Example update; adjust based on your needs
-        return redirect()->route('transaction.user-order', $transaction->user_id)->with('success', 'Order Confirmed Succesfully!');
+        return redirect()->route('transaction.user-order', $transaction->user_id)->with('success', 'Order Confirmed Succesfully
+        !');
     }
     /**
      * Update the specified resource in storage.

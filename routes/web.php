@@ -19,6 +19,10 @@ Route::prefix('v1')->group(function ($route) {
     Route::middleware('auth')->group(function () {
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [LaundryController::class, 'index'])->name('dashboard')->middleware(isAdmin::class);
+        Route::get('/dashboard/add-user', [LaundryController::class, 'addUser'])->name('add-user')->middleware(isAdmin::class);
+        Route::post('/dashboard/add-user', [LaundryController::class, 'storeUser'])->name('store-user')->middleware(isAdmin::class);
+        Route::get('/dashboard/edit-user/{id}', [LaundryController::class, 'editUser'])->name('edit-user')->middleware(isAdmin::class);
+        Route::put('/dashboard/update-user/{id}', [LaundryController::class, 'updateUser'])->name('update-user')->middleware(isAdmin::class);
         Route::get('/order', [LaundryController::class, 'order'])->name("order");
         Route::resource('transaction', TransactionController::class);
         Route::put('transaction/cancel-order/{id}', [TransactionController::class, 'cancelOrder'])->name('transaction.cancelOrder');
